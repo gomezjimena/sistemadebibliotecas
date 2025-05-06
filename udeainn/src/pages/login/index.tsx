@@ -1,7 +1,8 @@
 import React from 'react';
+import Login from '@/components/login/login-form';
 
 const Index = () => {
-  return <div className='h-screen'>Hola Home</div>;
+  return <Login />;
 };
 
 export default Index;
