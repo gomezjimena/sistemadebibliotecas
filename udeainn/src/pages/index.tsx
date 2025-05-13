@@ -1,12 +1,9 @@
 import React from 'react';
-import Buttom from '@/components/Atoms/Buttom';
-import NavTitle from '@/components/Atoms/NavTitle';
-import Nav from '@/components/Organisms/Nav';
-
+import HeroTitle from '@/components/Molecules/HeroTitle';
 const Index = () => {
   return (
     <div className='flex justify-center items-center h-screen'>
-      <Nav />
+      <HeroTitle />
     </div>
   );
 };

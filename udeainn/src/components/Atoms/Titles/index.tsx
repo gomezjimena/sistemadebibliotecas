@@ -1,7 +1,11 @@
 import React from 'react';
 
 const HeroTitle = () => {
-  return <h1>Next generation digital banking</h1>;
+  return (
+    <h1 className='text-[56px] text-bank2 font-light text-left max-w-[400px]'>
+      Next generation digital banking
+    </h1>
+  );
 };
 const MediumTitle = () => {
   return <h2>Next generation digital banking</h2>;
@@ -9,5 +13,8 @@ const MediumTitle = () => {
 const SubTitle = () => {
   return <h3>Next generation digital banking</h3>;
 };
+const SubText = ({ text }: { text: string }) => {
+  return <p className='text-[18px] text-bank3 font-normal text-left max-w-[400px]'>{text}</p>;
+};
 
-export { HeroTitle, MediumTitle, SubTitle };
+export { HeroTitle, MediumTitle, SubTitle, SubText };
