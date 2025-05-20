@@ -10,8 +10,8 @@ const HeroTitle = () => {
 const MediumTitle = () => {
   return <h2>Next generation digital banking</h2>;
 };
-const SubTitle = () => {
-  return <h3>Next generation digital banking</h3>;
+const SubTitle = ({ title }: { title: string }) => {
+  return <h3 className='text-[24px] text-bank2 font-light text-left'>{title}</h3>;
 };
 const SubText = ({ text }: { text: string }) => {
   return <p className='text-[18px] text-bank3 font-normal text-left max-w-[400px]'>{text}</p>;
