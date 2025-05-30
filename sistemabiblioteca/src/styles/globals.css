@@ -10,10 +10,6 @@
   --color-bank4: #F7C708;
 }
 
-.gradient {
-  @apply bg-gradient-to-br from-[#33D35E] to-[#2AB6D9];
-}
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -121,11 +117,3 @@
   --sidebar-ring: oklch(0.527 0.154 150.069);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
