@@ -4,9 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-bank1: #30c88f;
-  --color-bank2: #2d314d;
-  --color-bank3: #9597a5;
+  --color-bank1: #9B2D4E;
+  --color-bank2: #052D57;
+  --color-bank3: #8BA1B9;
+  --color-bank4: #F7C708;
 }
 
 .gradient {
