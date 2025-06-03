@@ -23,11 +23,11 @@ export default function LoginForm() {
             <form className='space-y-4 '>
               <div>
                 <Label htmlFor='email' className='block mb-2 text-sm font-medium text-gray-700'>Email</Label>
-                <Input id='email' type='email' placeholder='correo@ejemplo.com' required className='border border-black bg-white rounded-md px-3 py-2' />
+                <Input id='email' type='email' placeholder='correo@ejemplo.com' required />
               </div>
               <div>
                 <Label htmlFor='password' className='block mb-2 text-sm font-medium text-gray-700'>Contraseña</Label>
-                <Input id='password' type='password' required className='border border-black bg-white rounded-md px-3 py-2' />
+                <Input id='password' type='password' required  />
               </div>
               <div className="mb-4">
                 <label htmlFor="rol" className="block text-sm font-medium text-gray-700 mb-1">
@@ -45,7 +45,7 @@ export default function LoginForm() {
                   <option value="estudiante">Usuario de la biblioteca</option>
                 </select>
               </div>
-              <Button type='submit' className='w-full bg-[var(--color-bank1)] hover:bg-[var(--color-bank2)]'>
+              <Button type='submit' variant="bank" className='w-full mt-4'>
                 Iniciar Sesión
               </Button>
               <div className='text-center text-sm'>

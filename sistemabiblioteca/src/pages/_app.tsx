@@ -5,9 +5,11 @@ import { useRouter } from 'next/router';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const isLoginPage = router.pathname === '/login';
+  const noLayoutPages = ['/recuperarcontrasena', '/']; // Páginas sin layout
+  const isNoLayout = noLayoutPages.includes(router.pathname);
 
-  return isLoginPage ? (
+
+  return isNoLayout ? (
     <Component {...pageProps} />
   ) : (
     <Layout>
