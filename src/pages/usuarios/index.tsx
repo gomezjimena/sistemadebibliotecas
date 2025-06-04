@@ -3,9 +3,9 @@ import Layout from '@/components/Organisms/Layout'
 
 const Index = () => {
   return (
-  <Layout>
-  <div>Proxima pag principal...</div>
-  </Layout>
+    <Layout>
+      <div>Proxima pag principal...</div>
+    </Layout>
   );
 };
 
