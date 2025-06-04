@@ -1,10 +1,20 @@
-import { cn } from '@/lib/utils';
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useRouter } from 'next/router';
 
 export default function LoginForm() {
+
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    router.push('/usuarios');
+  };
+
   return (
     <div className='flex h-screen items-center justify-center bg-gray-100 '>
       <Card className='flex w-full max-w-4xl overflow-hidden shadow-lg bg-[var(--color-bank4)] border border-black'>
@@ -20,7 +30,7 @@ export default function LoginForm() {
             <h2 className='mb-4 text-center text-xl font-bold text-gray-700'>
               Inicia sesión para acceder al sistema de la biblioteca
             </h2>
-            <form className='space-y-4 '>
+            <form className='space-y-4 ' onSubmit={handleSubmit}>
               <div>
                 <Label htmlFor='email' className='block mb-2 text-sm font-medium text-gray-700'>Email</Label>
                 <Input id='email' type='email' placeholder='correo@ejemplo.com' required />
