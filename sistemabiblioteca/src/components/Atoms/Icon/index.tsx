@@ -1,10 +1,16 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
 
-const Index = ({ icon }: { icon: string }) => {
+type Props = {
+  icon: string;
+  className?: string;
+  size?: number;
+};
+
+const Index = ({ icon, className = '', size = 40 }: Props) => {
   return (
-    <div className='flex flex-col items-center justify-center gradient w-[72px] h-[72px] rounded-full'>
-      <Icon icon={`${icon}`} width='90' height='90' className='text-black' />
+    <div className={`flex flex-col items-center justify-center gradient rounded-full ${className}`}>
+      <Icon icon={icon} width={size} height={size} className='text-black' />
     </div>
   );
 };

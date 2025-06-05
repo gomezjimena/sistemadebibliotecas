@@ -8,12 +8,7 @@ const Index = ({ children }: { children: ReactNode }) => {
       <div className=' hidden md:block'>
         <NavTitle />
         <Nav/>
-        
-       
-      
-    
-
-
+     
       </div>
        
     </div>
