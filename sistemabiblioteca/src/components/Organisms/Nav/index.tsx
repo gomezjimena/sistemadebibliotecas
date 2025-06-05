@@ -1,19 +1,43 @@
 import React from 'react';
-import NavTitle from '@/components/Atoms/NavTitle';
-import Buttom from '@/components/Atoms/Buttom';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+
+
 
 const Index = () => {
   return (
-    <nav className='flex flex-row w-full justify-around items-center bg-white shadow-md h-20'>
-      <div className=''>
-        <img src='/logo.png' alt='logo' />
+    <div className='flex flex-col h-screen'>
+   <div className='relative w-full' >
+         <img
+            src='/imagenes/salon.png'
+            alt='salon'
+            className='h-full w-full object-contain '
+            
+          />
+     <div className='absolute bottom-0 right-0 mb-4 mr-4'>
+              <Button type='submit' variant="bank" className='w-50 h-12  '>
+                prueba
+              </Button>
+              </div>     
+          
+          <div className='flex absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  text-2xl font-bold'>
+          
+          <div className='flex gap-4 '>
+          <Input id='search' type='search' placeholder='Busca tu libro' required className='h-12 w-200'/>
+              <Button type='submit' variant="bank" className='w-50 h-12  '>
+                Buscar
+              </Button>
+              
+              </div>
+              
+          </div>
+        </div>
+
+      <div className="bg-[var(--color-bank4)] flex-grow">
+      
       </div>
-      <div className='flex flex-row items-center justify-between gap-2 w-1/3'>
       </div>
-      <div className=''>
-        <Buttom />
-      </div>
-    </nav>
+
   );
 };
 

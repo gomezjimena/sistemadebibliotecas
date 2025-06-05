@@ -4,7 +4,7 @@ import Icon from '@/components/Atoms/Icon';
 const NavTitle = () => {
   return (
     <div className="bg-[var(--color-bank4)] py-0.5">
-      {/* Este contenedor limita el ancho y centra el contenido */}
+      
       <div className="max-w-6xl mx-auto h-auto flex flex-col md:flex-row justify-between text-bank3 items-center">
         
         <div className='w-full justify-center md:w-1/2 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4'>
