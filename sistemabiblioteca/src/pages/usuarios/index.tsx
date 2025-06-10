@@ -1,11 +1,9 @@
 import React from 'react';
-import Layout from '@/components/Organisms/Layout'
+import Features from '@/components/Organisms/Features'
 
 const Index = () => {
   return (
-    <Layout>
-      <div>Proxima pag principal...</div>
-    </Layout>
+    <Features></Features>
   );
 };
 
