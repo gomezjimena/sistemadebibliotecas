@@ -5,6 +5,7 @@ type Props = {
   icon: string;
   className?: string;
   size?: number;
+  
 };
 
 const Index = ({ icon, className = '', size = 40 }: Props) => {
