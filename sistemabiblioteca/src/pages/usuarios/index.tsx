@@ -3,7 +3,12 @@ import Features from '@/components/Organisms/Features'
 
 const Index = () => {
   return (
-    <Features></Features>
+    
+    <div className=' h-screen bg-[var(--color-bank4)] '>
+      <div className="">
+        <Features></Features>
+      </div>
+      </div>
   );
 };
 

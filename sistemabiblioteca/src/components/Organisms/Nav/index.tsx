@@ -5,9 +5,7 @@ import Icon from '@/components/Atoms/Icon';
 
 const Index = () => {
   return (
-    <div className='flex flex-col h-screen'>
-    
-    <div className='relative w-full' >
+    <div className='relative w-full ' >
       <img
         src='/imagenes/salon.png'
         alt='salon'
@@ -27,8 +25,8 @@ const Index = () => {
           <div className='flex absolute top-[40%] left-[49%] transform -translate-x-1/2 -translate-y-1/2  text-2xl font-bold'>
           
           <div className='flex gap-4 '>
-          <Input id='search' type='search' placeholder='       Buscar en el catalogo por titulo' required className='h-10 w-170'/>
-          <Icon icon="lucide:search" size={60} className="w-[40px] h-[20px] absolute bottom-2"  />
+          <Input id='search' type='search' placeholder='Buscar en el catalogo por titulo' required className='h-10 w-170 pl-10'/>
+          <Icon icon="lucide:search" size={20} className="w-[40px] h-[20px] absolute bottom-2"  />
           
               <Button type='submit' variant="bank" className='w-30 h-10  '>
                 Buscar
@@ -39,9 +37,6 @@ const Index = () => {
           </div>
         </div>
 
-      <div className="bg-[var(--color-bank4)] flex-grow">
-      </div>
-      </div>
 
   );
 };
