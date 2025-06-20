@@ -3,7 +3,53 @@ import FeatureCardLibro from '@/components/Molecules/FeatureCardLibro';
 
 const features = [
   {
-    imageSrc: '/imagenes/losnombrespropios',
+    imageSrc: 'imagenes/losnombrespropios.webp',
+    titulo: 'Los nombres propios',
+    autor: 'Marta Jiménez Serrano',
+    categoria: 'Romance',
+    paginas: 345,
+    estado: 'Disponible',
+    ubicacion: 'Estantería 5 - A2',
+  },
+  {
+    imageSrc: 'imagenes/losnombrespropios.webp',
+    titulo: 'Los nombres propios',
+    autor: 'Marta Jiménez Serrano',
+    categoria: 'Romance',
+    paginas: 345,
+    estado: 'Disponible',
+    ubicacion: 'Estantería 5 - A2',
+  },
+  {
+    imageSrc: 'imagenes/losnombrespropios.webp',
+    titulo: 'Los nombres propios',
+    autor: 'Marta Jiménez Serrano',
+    categoria: 'Romance',
+    paginas: 345,
+    estado: 'Disponible',
+    ubicacion: 'Estantería 5 - A2',
+  },
+  {
+    imageSrc: 'imagenes/losnombrespropios.webp',
+    titulo: 'Los nombres propios',
+    autor: 'Marta Jiménez Serrano',
+    categoria: 'Romance',
+    paginas: 345,
+    estado: 'Disponible',
+    ubicacion: 'Estantería 5 - A2',
+  },
+  {
+    imageSrc: 'imagenes/losnombrespropios.webp',
+    titulo: 'Los nombres propios',
+    autor: 'Marta Jiménez Serrano',
+    categoria: 'Romance',
+    paginas: 345,
+    estado: 'Disponible',
+    ubicacion: 'Estantería 5 - A2',
+  },
+  
+  {
+    imageSrc: 'imagenes/losnombrespropios.webp',
     titulo: 'Los nombres propios',
     autor: 'Marta Jiménez Serrano',
     categoria: 'Romance',
@@ -15,7 +61,7 @@ const features = [
 
 const Index = () => {
   return (
-    <div className='flex flex-row flex-wrap justify-around items-start gap-6 p-6'>
+    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6'>
       {features.map((feature, index) => (
         <FeatureCardLibro
           key={index}

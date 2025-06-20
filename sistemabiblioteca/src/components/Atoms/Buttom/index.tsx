@@ -1,11 +1,18 @@
 import React from 'react';
+import { cn } from '@/lib/utils'; // o usa clsx si prefieres
 
-const Index = () => {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+
+export const Button = ({ className, children, ...props }: ButtonProps) => {
   return (
-    <button className='w-40 h-11 bg-[var(--color-bank1)] text-white font-bold rounded text-sm hover:scale-105 transition-all duration-300 cursor-pointer'>
-      Request Invite
+    <button
+      className={cn(
+        'bg-[var(--color-bank1)] text-white font-bold rounded text-sm hover:scale-105 transition-all duration-300 cursor-pointer px-4 py-2',
+        className
+      )}
+      {...props}
+    >
+      {children}
     </button>
   );
 };
-
-export default Index;

@@ -40,4 +40,3 @@ const NavTitle = () => {
 };
 
 export default NavTitle;
-
