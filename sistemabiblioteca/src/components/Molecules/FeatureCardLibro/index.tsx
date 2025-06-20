@@ -19,6 +19,7 @@ const FeatureCardLibro = ({
   paginas,
   estado,
   ubicacion,
+  
 }: FeatureCardProps) => {
   return (
     <div className="bg-white rounded-xl shadow-md p-4 w-full max-w-[310px] ">

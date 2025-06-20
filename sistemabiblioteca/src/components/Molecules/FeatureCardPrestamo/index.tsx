@@ -5,25 +5,25 @@ interface FeatureCardProps {
   email: string;
   tituloLibro: string;
   usuario: string;
-  documento: string;
-  numerotelefono: string;
-  inicioreserva: Date;
-  finreserva: Date;
+  creadoPor: string;
+  estadoPrestamo: string;
+  fechaPrestamo: Date;
+  fechaVencimientoPrestamo: Date;
 }
 
 const FeatureCardReserva = ({
   email,
   tituloLibro,
   usuario,
-  documento,
-  numerotelefono,
-  inicioreserva,
-  finreserva,
+  creadoPor,
+  estadoPrestamo,
+  fechaPrestamo,
+  fechaVencimientoPrestamo,
 }: FeatureCardProps) => {
   return (
     <div className="bg-white rounded-xl shadow-md p-6 w-[300%] ml-auto">
       <h2 className="text-2xl font-bold mb-6 ">
-        RESERVAR <span className="text-black">“{tituloLibro}”</span>
+        ACTUALIZAR PRÉSTAMO DE <span className="text-black">“{tituloLibro}”</span>
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -37,12 +37,12 @@ const FeatureCardReserva = ({
         </div>
 
         <div className="flex flex-col">
-          <label className="text-sm mb-1">Número de teléfono</label>
-          <input
-            value={numerotelefono}
-            readOnly
-            className="border border-gray-300 rounded px-3 py-2"
-          />
+          <label className=" text-sm mb-1">Estado</label>
+          <select className='border border-gray-300 rounded px-3 py-2'
+          value={estadoPrestamo}>
+            <option value={estadoPrestamo}>Vigente</option>
+            <option value={estadoPrestamo}>Cerrado</option>
+        </select>
         </div>
 
         <div className="flex flex-col">
@@ -55,27 +55,27 @@ const FeatureCardReserva = ({
         </div>
 
         <div className="flex flex-col">
-          <label className="text-sm mb-1">Fecha Reserva</label>
+          <label className="text-sm mb-1">Fecha Préstamo</label>
           <input
-            value={inicioreserva.toLocaleDateString()}
+            value={fechaPrestamo.toLocaleDateString()}
             readOnly
             className="border border-gray-300 rounded px-3 py-2"
           />
         </div>
 
         <div className="flex flex-col">
-          <label className="text-sm mb-1">Documento</label>
+          <label className="text-sm mb-1">Creado Por</label>
           <input
-            value={documento}
+            value={creadoPor}
             readOnly
             className="border border-gray-300 rounded px-3 py-2"
           />
         </div>
 
         <div className="flex flex-col">
-          <label className="text-sm mb-1">Fecha Vencimiento Reserva</label>
+          <label className="text-sm mb-1">Fecha Vencimiento Préstamo</label>
           <input
-            value={finreserva.toLocaleDateString()}
+            value={fechaVencimientoPrestamo.toLocaleDateString()}
             readOnly
             className="border border-gray-300 rounded px-3 py-2"
           />

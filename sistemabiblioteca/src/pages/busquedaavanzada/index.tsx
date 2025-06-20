@@ -1,5 +1,5 @@
 import React from 'react';
-import Features from '@/components/Organisms/Features'
+import Features from '@/components/Organisms/FeatureLibro'
 import NavBusquedaAvanzada from '@/components/Organisms/NavBusquedaAvanzada'
 
 const Index = () => {
