@@ -10,7 +10,7 @@ interface FeatureCardProps {
   personasespera: number;
 }
 
-const FeatureCardReserva = ({
+const FeatureCardListaEspera = ({
   email,
   tituloLibro,
   usuario,
@@ -79,4 +79,4 @@ const FeatureCardReserva = ({
   );
 };
 
-export default FeatureCardReserva;
+export default FeatureCardListaEspera;

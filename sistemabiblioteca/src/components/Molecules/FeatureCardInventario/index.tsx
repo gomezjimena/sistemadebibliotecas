@@ -10,7 +10,7 @@ interface FeatureCardProps {
   cantidadtotal: number;
 }
 
-const FeatureCardLibro = ({
+const FeatureCardInventario = ({
   titulo,
   cantidadisponible,
   cantidadprestada,
@@ -39,5 +39,5 @@ const FeatureCardLibro = ({
   );
 };
 
-export default FeatureCardLibro;
+export default FeatureCardInventario;
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Features from '@/components/Organisms/FeatureEstado'
+import Features from '@/components/Organisms/FeatureForm'
 import FeatureLibro from '@/components/Organisms/FeatureLibro'
 import NavLibro from '@/components/Organisms/NavVistaSimple'
 
