@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from '@/components/Atoms/Icon';
+import Link from 'next/link';
 
 const NavTitle = () => {
   return (
@@ -8,11 +9,13 @@ const NavTitle = () => {
       <div className="max-w-6xl mx-auto h-auto flex flex-col md:flex-row justify-between text-bank3 items-center">
         
         <div className='w-full justify-start md:w-1/2 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4'>
+          <Link href={'/libros'}>
           <img
             src='/imagenes/logosb.png'
             alt='Logo'
             className='h-28 w-28 object-contain'
           />
+          </Link>
           <h2 className='pl-6 text-center md:text-left text-2xl font-bold text-black'>
             SISTEMA DE BIBLIOTECAS <br />
             COLEGIO CALASANZ
@@ -30,9 +33,16 @@ const NavTitle = () => {
           
         </div>
 
-      <div className="absolute bottom-145 right-4">
-        <Icon icon="mdi-light:arrow-right-circle" size={40} />
-      </div>
+        <div className="absolute bottom-150 right-4 group cursor-pointer" onClick={() => {
+  localStorage.removeItem('usuario');
+  window.location.href = '/'; 
+}}>
+          <Icon icon="mdi-light:arrow-right-circle" size={40} />
+          <span className="absolute right-12 top-1/2 transform -translate-y-1/2 bg-black text-white text-sm px-5 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            Cerrar sesión
+          </span>
+        </div>
+
 
       </div>
     </div>

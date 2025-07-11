@@ -1,6 +1,4 @@
 import React from 'react';
-import Features from '@/components/Organisms/FeatureEstado'
-import FeatureLibro from '@/components/Organisms/FeatureLibro'
 import NavLibro from '@/components/Organisms/NavVistaSimple'
 
 const Index = () => {
@@ -10,8 +8,7 @@ const Index = () => {
       <NavLibro></NavLibro>
       <div className=' min-h-screen bg-[var(--color-bank4)] '>
         <div className="flex justify-center p-6">
-          
-          <Features></Features>
+          <h1>No hay libro seleccionado</h1>
         </div>
       </div>
     </div>

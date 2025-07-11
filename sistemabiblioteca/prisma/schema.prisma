@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -18,14 +12,14 @@ model Account {
   type              String
   provider          String
   providerAccountId String  @map("provider_account_id")
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade, name: "AccountToUser")
+  user              User    @relation("AccountToUser", fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -35,30 +29,29 @@ model Session {
   sessionToken String   @unique
   userId       String   @map("user_id")
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade, name: "SessionToUser")
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  user         User     @relation("SessionToUser", fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-  id                          String          @id @default(cuid())
-  name                        String          
-  apellido                    String          
-  rol                         Rol             @default(USUARIO)
-  prestamosComoUsuario        Prestamo[]      @relation("UsuarioPrestamos")
-  prestamosComoBibliotecario  Prestamo[]      @relation("BibliotecarioPrestamos")
-  email                       String          @unique
-  emailVerified               DateTime?       @map("email_verified")
-  numeroTelefono              String          @unique 
-  documento                   String          @unique 
-  reservas                    Reserva[]    
-  listaEsperaEn               UsuarioEnListaEspera?
-  accounts                    Account[]       @relation(name: "AccountToUser")
-  sessions                    Session[]       @relation(name: "SessionToUser")
-  deleted                     Boolean         @default(false)
-  enabled                     Boolean         @default(true)
-  createdAt                   DateTime        @default(now())
-  updatedAt                   DateTime        @updatedAt
+  id                         String                @id @default(cuid())
+  name                       String
+  email                      String                @unique
+  emailVerified              DateTime?             @map("email_verified")
+  deleted                    Boolean               @default(false)
+  enabled                    Boolean               @default(true)
+  createdAt                  DateTime              @default(now())
+  updatedAt                  DateTime              @updatedAt
+  apellido                   String
+  documento                  String                @unique
+  numeroTelefono             String                @unique
+  rol                        Rol                   @default(USUARIO)
+  accounts                   Account[]             @relation("AccountToUser")
+  prestamosComoBibliotecario Prestamo[]            @relation("BibliotecarioPrestamos")
+  prestamosComoUsuario       Prestamo[]            @relation("UsuarioPrestamos")
+  reservas                   Reserva[]
+  sessions                   Session[]             @relation("SessionToUser")
 }
 
 model VerificationToken {
@@ -69,76 +62,45 @@ model VerificationToken {
   @@id([identifier, token])
 }
 
-model Prestamo{
-  id                    String            @id @default(cuid())
-  libroId               String
-  usuarioId             String   // Usuario que recibe el préstamo
-  bibliotecarioId       String   // Usuario que realiza el préstamo
-  libro                 Libro             @relation(fields: [libroId], references: [id])
-  usuario               User              @relation("UsuarioPrestamos", fields: [usuarioId], references: [id])
-  bibliotecario         User              @relation("BibliotecarioPrestamos", fields: [bibliotecarioId], references: [id])
-  fechaInicioPrestamo   DateTime
-  fechaFinPrestamo      DateTime
-  estado                EstadoPrestamo
+model Prestamo {
+  id                  String         @id @default(cuid())
+  libroId             String
+  usuarioId           String
+  bibliotecarioId     String
+  fechaInicioPrestamo DateTime
+  fechaFinPrestamo    DateTime
+  estado              EstadoPrestamo
+  bibliotecario       User           @relation("BibliotecarioPrestamos", fields: [bibliotecarioId], references: [id])
+  libro               Libro          @relation(fields: [libroId], references: [id])
+  usuario             User           @relation("UsuarioPrestamos", fields: [usuarioId], references: [id])
 }
 
-model Reserva{
-  id                    String          @id @default(cuid())
-  usuarioId             String          
-  usuario               User            @relation(fields: [usuarioId], references: [id])
-  libroId               String          
-  libro                 Libro           @relation(fields: [libroId], references: [id])
-  fechaInicioReserva    DateTime
-  fechaFinReserva       DateTime
-  estado                EstadoReserva
-
+model Reserva {
+  id                 String        @id @default(cuid())
+  usuarioId          String
+  libroId            String
+  fechaInicioReserva DateTime
+  fechaFinReserva    DateTime
+  estado             EstadoReserva
+  libro              Libro         @relation(fields: [libroId], references: [id])
+  usuario            User          @relation(fields: [usuarioId], references: [id])
 }
 
-model Libro{
-  id            String        @id @default(cuid())
+model Libro {
+  id            String       @id @default(cuid())
   titulo        String
-  categoria     Categoria  
+  categoria     Categoria
   paginas       Int
   estado        EstadoLibro
   ubicacion     String
-  signatura     String        @unique
-  autor         String      
-  listaEspera   ListaEspera?  
-  listaEsperaId String?
-  inventario    Inventario?   
-  inventarioId  String?
+  signatura     String       @unique
+  autor         String
+  imagesrc      String?      @default("https://img.freepik.com/vector-gratis/libro-cubierta-roja_1110-770.jpg")
   prestamos     Prestamo[]
   reservas      Reserva[]
 }
 
-model Inventario{
-  id                    String  @id @default(cuid())
-  libroId               String  @unique
-  libro                 Libro   @relation(fields: [libroId], references: [id])
-  cantidadDisponible    Int
-  cantidadPrestada      Int 
-  cantidadReservada     Int
-  cantidadTotal         Int
-}
-
-model ListaEspera {
-  id                  String                    @id @default(cuid())
-  libro               Libro                     @relation(fields: [libroId], references: [id])
-  libroId             String                    @unique
-  usuarios            UsuarioEnListaEspera[]
-  fechaCreacion       DateTime                  @default(now())
-}
-
-model UsuarioEnListaEspera {
-  id                String        @id @default(cuid())
-  user              User          @relation(fields: [userId], references: [id])
-  userId            String        @unique   // El usuario solo puede estar en una lista a la vez
-  listaEspera       ListaEspera   @relation(fields: [listaEsperaId], references: [id])
-  listaEsperaId     String
-  fechaCreacion     DateTime      @default(now())
-}
-
-enum Categoria{
+enum Categoria {
   ROMANCE
   TERROR
   ACADEMICO
@@ -149,7 +111,7 @@ enum Categoria{
   COMEDIA
 }
 
-enum EstadoLibro{
+enum EstadoLibro {
   PRESTADO
   DISPONIBLE
   PERDIDO
@@ -162,12 +124,12 @@ enum Rol {
   DIRECTOR
 }
 
-enum EstadoReserva{
+enum EstadoReserva {
   VIGENTE
   VENCIDA
 }
 
-enum EstadoPrestamo{
+enum EstadoPrestamo {
   VIGENTE
   VENCIDO
   CERRADO

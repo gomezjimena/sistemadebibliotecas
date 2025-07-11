@@ -2,6 +2,7 @@ import React from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/Atoms/Icon';
+import Link from 'next/link';
 
 const Index = () => {
   return (
@@ -12,10 +13,14 @@ const Index = () => {
         className='h-full w-full object-contain '
       />   
       <div className='absolute bottom-0 left-10 mb-4 mr-4'>
-              <Button type='submit' variant="bank" className='w-50 h-10  '>
+
+        <Link href={`/libros`}>
+              <Button type='button' variant="bank" className='w-50 h-10  '>
                 Salir de inventario
               </Button>
+          </Link>
             </div> 
+          
           
           <div className='flex absolute top-[40%] left-[49%] transform -translate-x-1/2 -translate-y-1/2  text-2xl font-bold'>
           

@@ -1,43 +1,47 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import  Icon  from '@/components/Atoms/Icon'
+import { Pencil, Trash2 } from 'lucide-react';
+import Link from 'next/link';
 
-interface FeatureCardProps {
+interface FeatureCardInventarioProps {
+  id: string;
   titulo: string;
-  cantidadisponible: number;
-  cantidadprestada: number;
-  cantidadreservada: number;
-  cantidadtotal: number;
+  autor: string;
+  estado: string;
+  onDelete: (id: string) => void;
 }
 
 const FeatureCardInventario = ({
+  id,
   titulo,
-  cantidadisponible,
-  cantidadprestada,
-  cantidadreservada,
-  cantidadtotal,
-  
-}: FeatureCardProps) => {
+  autor,
+  estado,
+  onDelete,
+}: FeatureCardInventarioProps) => {
   return (
-    <div className="bg-white rounded-xl shadow-md p-4 w-full max-w-[310px] ">
-
-    
-      <div className="flex gap-2 mt-4">
-        <Button type='submit' variant="bank" className='flex-1'> Añadir Libro </Button>
-      </div>
-
-      <div className="text-sm text-black">
-        <p><strong>Título del libro</strong> {titulo}</p>
-        <p><strong>Cantidad Disponible</strong> {cantidadisponible}</p>
-        <p><strong>Cantidad Prestada</strong> {cantidadprestada}</p>
-        <p><strong>Cantidad Reservada</strong> {cantidadreservada}</p>
-        <p><strong>Cantidad Total</strong> {cantidadtotal}</p>
-      </div>
-
-
-    </div>
+    <tr className="border-b hover:bg-gray-50">
+      <td className="p-3">{titulo}</td>
+      <td className="p-3">{autor}</td>
+      <td className="p-3">{estado}</td>
+      <td className="p-3 text-center">
+        <Link href={`/editarlibro/${id}`}>
+          <Button size="icon" variant="ghost" title="Editar">
+            <Pencil className="w-4 h-4" />
+          </Button>
+      </Link>
+      </td>
+      <td className="p-3 text-center">
+        <Button
+          size="icon"
+          variant="ghost"
+          title="Eliminar"
+          onClick={() => onDelete(id)}
+        >
+          <Trash2 className="w-4 h-4 text-red-500" />
+        </Button>
+      </td>
+    </tr>
   );
 };
 
 export default FeatureCardInventario;
-
