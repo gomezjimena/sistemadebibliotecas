@@ -3,6 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/Atoms/Icon';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 interface Usuario {
   id: string;
@@ -14,17 +15,33 @@ interface Usuario {
 const Index = () => {
 
   const [user, setUser] = useState<Usuario | null>(null); // Usuario autenticado
+  const [titulo, setTitulo] = useState('');
+  const router = useRouter();
+
+  const handleFiltrar = () => {
+    const query: any = {};
+
+    if (titulo) query.titulo = titulo;
+
+    router.push({
+      pathname: '/libros',
+      query,
+    });
+
+    setTitulo('');
+  };
+
 
   useEffect(() => {
-    // Traer usuario desde localStorage
-    const usuarioGuardado = localStorage.getItem('usuario');
-    if (usuarioGuardado) {
-      setUser(JSON.parse(usuarioGuardado));
-    }
-  });
+  const usuarioGuardado = localStorage.getItem('usuario');
+  if (usuarioGuardado) {
+    setUser(JSON.parse(usuarioGuardado));
+  }
+}, []);
 
   const isDirector = user?.rol === 'DIRECTOR';
-
+  
+  
   return (
     <div className='relative w-full ' >
       <img
@@ -52,23 +69,16 @@ const Index = () => {
           <div className='flex absolute top-[40%] left-[49%] transform -translate-x-1/2 -translate-y-1/2  text-2xl font-bold'>
           
           <div className='flex gap-4 '>
-          <Input id='search' type='search' placeholder='Buscar en el catalogo por titulo' className='h-10 w-170 pl-10' />
+          <Input id='search-titulo' type='search' placeholder='Buscar en el catalogo por titulo' className='h-10 w-170 pl-10' 
+                  value={titulo} onChange={(e) => setTitulo(e.target.value)}/>
           <Icon icon="lucide:search" size={20} className="w-[40px] h-[20px] absolute bottom-2"  />
           
-          <Link href={`/libros`}>
-              <Button type='submit' variant="bank" className='w-30 h-10  '>
+            <Button onClick={handleFiltrar} variant="bank" className='w-30 h-10  ' >
                 Buscar
-              </Button>
-              </Link>
+            </Button>
               </div>
               </div>
-
-              
-              
-          
         </div>
-
-
   );
 };
 

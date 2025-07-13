@@ -65,6 +65,22 @@ export const deleteLibro = async (id: string) => {
   }
 };
 
+export const editarLibro = async (id: string, datos: any) => {
+  try {
+    const res = await fetch(`/api/libro/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(datos),
+    });
+
+    if (!res.ok) throw new Error('Error al editar libro');
+    return await res.json();
+  } catch (error) {
+    console.error('Error en editarLibro:', error);
+    throw error;
+  }
+};
+
 export const actualizarEstadoLibro = async (id: string, nuevoEstado: string) => {
   try {
     const res = await fetch(`/api/libro/${id}`, {
@@ -80,38 +96,6 @@ export const actualizarEstadoLibro = async (id: string, nuevoEstado: string) => 
     throw error;
   }
 };
-
-//Prestamo
-
-export const getPrestamos = async () => {
-  try {
-    const res = await fetch('/api/prestamo', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    });
-    if (!res.ok) throw new Error('Error al obtener préstamos');
-    return res.json();
-  } catch (error) {
-    console.error('Error en getPrestamos:', error);
-    throw error;
-  }
-};
-
-export const crearPrestamo = async (data: any) => {
-  try {
-    const res = await fetch('/api/prestamo', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error('Error al crear préstamo');
-    return res.json();
-  } catch (error) {
-    console.error('Error en crearPrestamo:', error);
-    throw error;
-  }
-};
-
 
 //Reserva
 
@@ -131,11 +115,12 @@ export const getReservas = async () => {
 
 export const crearReserva = async (data: any) => {
   try {
-    const res = await fetch('/api/reserva', {
+    const res = await fetch(`/api/reserva`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
+
     if (!res.ok) throw new Error('Error al crear reserva');
     return res.json();
   } catch (error) {

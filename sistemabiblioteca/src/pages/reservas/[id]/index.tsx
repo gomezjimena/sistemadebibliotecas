@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import FeatureCardReserva from '@/components/Molecules/FeatureCardReserva';
+import FeatureCardLibro from '@/components/Molecules/FeatureCardLibro';
 import { getLibros, crearReserva, actualizarEstadoLibro } from '@/utils/api';
 import NavLibro from '@/components/Organisms/NavVistaSimple';
 
 interface Libro {
   id: string;
+  imagesrc: string;
   titulo: string;
+  autor: string;
+  categoria: string;
+  paginas: number;
   estado: string;
+  ubicacion: string;
 }
 
 interface Usuario {
@@ -15,7 +21,7 @@ interface Usuario {
   name: string;
   email: string;
   documento: string;
-  numerotelefono: string;
+  numeroTelefono: string;
 }
 
 const ReservaPage = () => {
@@ -26,7 +32,7 @@ const ReservaPage = () => {
   const [usuario, setUsuario] = useState<Usuario | null>(null);
 
   const [inicioReserva] = useState(new Date());
-  const [finReserva] = useState(new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)); // +3 días
+  const [finReserva] = useState(new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)); 
 
   useEffect(() => {
     const storedUser = localStorage.getItem('usuario');
@@ -35,11 +41,15 @@ const ReservaPage = () => {
     }
 
     const fetchLibro = async () => {
-      if (!id) return;
-      const data = await getLibros();
-      const libroEncontrado = data.find((l: Libro) => l.id === id);
-      setLibro(libroEncontrado);
-    };
+  try {
+    if (!id) return;
+    const data = await getLibros();
+    const libroEncontrado = data.find((l: Libro) => l.id === id);
+    setLibro(libroEncontrado);
+  } catch (err) {
+    console.error('Error al cargar el libro:', err);
+  }
+};
 
     fetchLibro();
   }, [id]);
@@ -53,22 +63,17 @@ const ReservaPage = () => {
     }
 
     const reservaData = {
-      email: usuario.email,
-      tituloLibro: libro.titulo,
-      usuario: usuario.name,
-      documento: usuario.documento,
-      numerotelefono: usuario.numerotelefono,
-      inicioreserva: inicioReserva,
-      finreserva: finReserva,
-      libroId: libro.id,
-      usuarioId: usuario.id,
-    };
+  usuarioId: usuario.id,
+  libroId: libro.id,
+  inicioreserva: inicioReserva,
+  finreserva: finReserva,
+};
 
     try {
       await crearReserva(reservaData);
       await actualizarEstadoLibro(libro.id, 'RESERVADO');
       alert('Reserva creada con éxito');
-      router.push('/misreservas');
+      router.push('/libros');
     } catch (error) {
       alert('Error al crear la reserva');
     }
@@ -83,13 +88,28 @@ const ReservaPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <NavLibro />
-      <div className="flex justify-center items-center min-h-screen bg-[var(--color-bank4)] p-10">
+      <div className="flex justify-center items-center min-h-screen bg-[var(--color-bank4)] gap-15">
+
+          
+          {/* Card Visual del Libro */}
+          <FeatureCardLibro
+            key={libro.id}
+            id={libro.id}
+            imagesrc={libro.imagesrc}
+            titulo={libro.titulo}
+            autor={libro.autor}
+            categoria={libro.categoria}
+            paginas={libro.paginas}
+            estado={libro.estado}
+            ubicacion={libro.ubicacion}
+          />
+
         <FeatureCardReserva
           email={usuario.email}
           tituloLibro={libro.titulo}
           usuario={usuario.name}
           documento={usuario.documento}
-          numerotelefono={usuario.numerotelefono}
+          numeroTelefono={usuario.numeroTelefono}
           inicioreserva={inicioReserva}
           finreserva={finReserva}
           onConfirmar={handleConfirmarReserva}

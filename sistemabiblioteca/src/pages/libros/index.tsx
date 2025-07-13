@@ -15,45 +15,64 @@ interface Libro {
   ubicacion: string;
 }
 
-const Index = () => {
+const LibrosPage = () => {
   const [libros, setLibros] = useState<Libro[]>([]);
+  const [librosFiltrados, setLibrosFiltrados] = useState<Libro[]>([]);
+  const router = useRouter();
+
+  const titulo = (router.query.titulo as string) || '';
 
   useEffect(() => {
-      const fetchLibros = async () => {
-        try {
-          const data = await getLibros();
-          console.log('Libros:', data); 
-          setLibros(data);
-        } catch (error) {
-          console.error('Error al cargar los libros:', error);
-        }
-      };
-  
-      fetchLibros();
-    }, []);
+    const fetchLibros = async () => {
+      try {
+        const data = await getLibros();
+        setLibros(data);
+      } catch (error) {
+        console.error('Error al cargar los libros:', error);
+      }
+    };
+
+    fetchLibros();
+  }, []);
+
+  useEffect(() => {
+    if (!router.isReady) return; 
+
+    const filtrados = libros.filter((libro) =>
+      libro.titulo.toLowerCase().includes(titulo.toLowerCase().trim())
+    );
+
+    setLibrosFiltrados(filtrados);
+  }, [titulo, libros, router.isReady]);
 
   return (
     <div className="flex flex-col min-h-screen">
       <Nav />
       <div className='min-h-screen bg-[var(--color-bank4)]'>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
-          {libros.map((libro) => (
-            <Features
-              key={libro.id}
-              id={libro.id}
-              imagesrc={libro.imagesrc}
-              titulo={libro.titulo}
-              autor={libro.autor}
-              categoria={libro.categoria}
-              paginas={libro.paginas}
-              estado={libro.estado}
-              ubicacion={libro.ubicacion}
-            />
-          ))}
+          {librosFiltrados.length > 0 ? (
+            librosFiltrados.map((libro) => (
+              <Features
+                key={libro.id}
+                id={libro.id}
+                imagesrc={libro.imagesrc}
+                titulo={libro.titulo}
+                autor={libro.autor}
+                categoria={libro.categoria}
+                paginas={libro.paginas}
+                estado={libro.estado}
+                ubicacion={libro.ubicacion}
+              />
+            ))
+          ) : (
+            <p className="text-center text-lg text-black col-span-full mt-10">
+              No se encontraron libros.
+            </p>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default Index;
+export default LibrosPage;

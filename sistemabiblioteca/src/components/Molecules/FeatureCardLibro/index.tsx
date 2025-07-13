@@ -65,8 +65,15 @@ const FeatureCardLibro = ({
       </div>
 
       <div className="flex gap-2 mt-4">
-        <Link href={`/reservas/${id}`}><Button type='submit' variant="bank" className='flex-1' disabled={estado.toUpperCase() !== 'DISPONIBLE'}> Reservar </Button></Link>
-        <Link href={`/prestamos/${id}`}>{isDirector && (<Button type='submit' variant="bank" className='flex-1'> Préstamo </Button>)}</Link>
+        {estado.toUpperCase() === 'DISPONIBLE' ? (
+        <Link href={`/reservas/${id}`}>
+          <Button type="submit" variant="bank" className="flex-1">Reservar</Button>
+        </Link>
+      ) : (
+        <Button type="button" variant="bank" className="flex-1" disabled>
+          No disponible
+        </Button>
+      )}
         <Link href={`/estadolibro/${id}`}>{isDirector && (<Button type='submit' variant="bank" className='flex-1'> Estado </Button>)}</Link>
       </div>
 

@@ -43,6 +43,7 @@ const EstadoLibroPage = () => {
         await actualizarEstadoLibro(id, nuevoEstado);
         setLibro(prev => prev ? { ...prev, estado: nuevoEstado } : prev);
         alert('Estado actualizado correctamente');
+        router.push('/libros'); 
     } catch (error) {
         alert('Error al actualizar el estado');
     }
@@ -55,11 +56,8 @@ const EstadoLibroPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <NavLibro />
-      <div className="flex flex-col items-center justify-center p-10 bg-[var(--color-bank4)] min-h-screen">
+      <div className="flex justify-center items-center min-h-screen bg-[var(--color-bank4)] gap-15">
 
-        <div className="flex flex-col md:flex-row gap-10 items-start justify-center">
-
-        <div>
           
           {/* Card Visual del Libro */}
           <FeatureCardLibro
@@ -74,9 +72,6 @@ const EstadoLibroPage = () => {
             ubicacion={libro.ubicacion}
           />
 
-        </div>
-
-        <div className="w-[1000px]"> 
 
           {/* Card para cambiar el estado */}
           <FeatureCardEstadoLibro
@@ -85,10 +80,6 @@ const EstadoLibroPage = () => {
             estadoPrestamo={libro.estado}
             onSubmit={handleActualizarEstado}
           />
-          
-        </div>
-
-        </div>
 
       </div>
     </div>

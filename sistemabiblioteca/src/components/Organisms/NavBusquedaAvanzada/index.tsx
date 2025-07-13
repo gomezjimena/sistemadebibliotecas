@@ -28,9 +28,12 @@ const Index = () => {
     if (autor.trim() !== '') query.autor = autor.trim();
 
     router.push({
-      pathname: '/libros',
+      pathname: '/busquedaavanzada',
       query,
     });
+
+    setCategoria('');
+    setAutor('');
   };
 
   return (

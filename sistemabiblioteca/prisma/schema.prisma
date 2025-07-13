@@ -48,8 +48,6 @@ model User {
   numeroTelefono             String                @unique
   rol                        Rol                   @default(USUARIO)
   accounts                   Account[]             @relation("AccountToUser")
-  prestamosComoBibliotecario Prestamo[]            @relation("BibliotecarioPrestamos")
-  prestamosComoUsuario       Prestamo[]            @relation("UsuarioPrestamos")
   reservas                   Reserva[]
   sessions                   Session[]             @relation("SessionToUser")
 }
@@ -60,19 +58,6 @@ model VerificationToken {
   expires    DateTime
 
   @@id([identifier, token])
-}
-
-model Prestamo {
-  id                  String         @id @default(cuid())
-  libroId             String
-  usuarioId           String
-  bibliotecarioId     String
-  fechaInicioPrestamo DateTime
-  fechaFinPrestamo    DateTime
-  estado              EstadoPrestamo
-  bibliotecario       User           @relation("BibliotecarioPrestamos", fields: [bibliotecarioId], references: [id])
-  libro               Libro          @relation(fields: [libroId], references: [id])
-  usuario             User           @relation("UsuarioPrestamos", fields: [usuarioId], references: [id])
 }
 
 model Reserva {
@@ -96,7 +81,6 @@ model Libro {
   signatura     String       @unique
   autor         String
   imagesrc      String?      @default("https://img.freepik.com/vector-gratis/libro-cubierta-roja_1110-770.jpg")
-  prestamos     Prestamo[]
   reservas      Reserva[]
 }
 
@@ -127,10 +111,4 @@ enum Rol {
 enum EstadoReserva {
   VIGENTE
   VENCIDA
-}
-
-enum EstadoPrestamo {
-  VIGENTE
-  VENCIDO
-  CERRADO
 }

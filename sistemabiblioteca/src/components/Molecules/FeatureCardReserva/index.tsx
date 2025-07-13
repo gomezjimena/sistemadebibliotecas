@@ -1,13 +1,12 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 
 interface FeatureCardProps {
   email: string;
   tituloLibro: string;
   usuario: string;
   documento: string;
-  numerotelefono: string;
+  numeroTelefono: string;
   inicioreserva: Date;
   finreserva: Date;
   onConfirmar: () => void;
@@ -19,7 +18,7 @@ const FeatureCardReserva = ({
   tituloLibro,
   usuario,
   documento,
-  numerotelefono,
+  numeroTelefono,
   inicioreserva,
   finreserva,
   onConfirmar,
@@ -39,7 +38,7 @@ const FeatureCardReserva = ({
 
         <div className="flex flex-col">
           <label className="text-sm mb-1">Número de teléfono</label>
-          <input value={numerotelefono} readOnly className="border border-gray-300 rounded px-3 py-2" />
+          <input value={numeroTelefono} readOnly className="border border-gray-300 rounded px-3 py-2" />
         </div>
 
         <div className="flex flex-col">

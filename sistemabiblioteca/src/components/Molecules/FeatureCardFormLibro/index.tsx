@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface LibroData {
+  id: string;
   titulo: string;
   autor: string;
   categoria: string;
   paginas: number;
   ubicacion: string;
   signatura: string;
+  imagesrc: string;
 }
+
+const categorias = [
+  { value: 'ROMANCE', label: 'Romance' },
+  { value: 'TERROR', label: 'Terror' },
+  { value: 'ACADEMICO', label: 'Académico' },
+  { value: 'AVENTURA', label: 'Aventura' },
+  { value: 'DRAMA', label: 'Drama' },
+  { value: 'CIENCIA_FICCION', label: 'Ciencia Ficción' },
+  { value: 'ACCION', label: 'Acción' },
+  { value: 'COMEDIA', label: 'Comedia' },
+];
 
 interface Props {
   modo: 'crear' | 'editar';
@@ -17,17 +31,32 @@ interface Props {
 }
 
 const LibroFormCard = ({ modo, initialData, onSubmit }: Props) => {
+  const [id, setId] = useState(initialData?.id || '');
   const [titulo, setTitulo] = useState(initialData?.titulo || '');
   const [autor, setAutor] = useState(initialData?.autor || '');
   const [categoria, setCategoria] = useState(initialData?.categoria || '');
   const [paginas, setPaginas] = useState(initialData?.paginas || 0);
   const [ubicacion, setUbicacion] = useState(initialData?.ubicacion || '');
   const [signatura, setSignatura] = useState(initialData?.signatura || '');
+  const [imagesrc, setImagen] = useState(initialData?.imagesrc || '');
 
   const handleSubmit = () => {
-    const data: LibroData = { titulo, autor, categoria, paginas, ubicacion, signatura };
-    onSubmit(data);
+  const data: any = {
+    titulo,
+    autor,
+    categoria,
+    paginas,
+    ubicacion,
+    signatura,
+    imagesrc,
   };
+
+  if (modo === 'editar') {
+    data.id = id;
+  }
+
+  onSubmit(data);
+};
 
   return (
     <div className="bg-white rounded-xl shadow-md p-6 w-[200%] ml-auto">
@@ -52,10 +81,12 @@ const LibroFormCard = ({ modo, initialData, onSubmit }: Props) => {
             onChange={(e) => setCategoria(e.target.value)}
             className="border border-gray-300 rounded px-3 py-2"
           >
-            <option value="Academico">Académico</option>
-            <option value="Romance">Romance</option>
-            <option value="Terror">Terror</option>
-            <option value="Aventura">Aventura</option>
+            <option value="">Selecciona una categoría</option>
+            {categorias.map((cat) => (
+              <option key={cat.value} value={cat.value}>
+                {cat.label}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -95,11 +126,21 @@ const LibroFormCard = ({ modo, initialData, onSubmit }: Props) => {
             className="border border-gray-300 rounded px-3 py-2"
           />
         </div>
+
+        <div className="flex flex-col">
+          <label className="text-sm mb-1">URL de la imagen</label>
+          <input
+            value={imagesrc}
+            onChange={(e) => setImagen(e.target.value)}
+            placeholder="https://..."
+            className="border border-gray-300 rounded px-3 py-2"
+          />
+        </div>
       </div>
 
       <div className="flex justify-center gap-4 mt-6">
-        <Button variant="bank">Cancelar</Button>
-        <Button variant="bank">Guardar</Button>
+        <Link href={'/inventario'}> <Button variant="bank">Cancelar</Button></Link>
+        <Button variant="bank" onClick={handleSubmit}>Guardar</Button>
       </div>
     </div>
   );

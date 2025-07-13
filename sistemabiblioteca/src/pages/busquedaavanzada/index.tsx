@@ -63,6 +63,7 @@ const Index = () => {
             librosFiltrados.map((libro) => (
               <Features
                 key={libro.id}
+                id={libro.id}
                 imagesrc={libro.imagesrc}
                 titulo={libro.titulo}
                 autor={libro.autor}
