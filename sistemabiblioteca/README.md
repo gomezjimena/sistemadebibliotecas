@@ -1,3 +1,61 @@
+## INTEGRANTES:
+Jimena Muñoz Gómez
+Leonardo Saenz 
+Ricardo Velez
+Claudia Barreto
+
+## USUARIOS PARA EL PROYECTO
+
+## USUARIO NORMAL
+correo: usuario@gmail.com
+documento: 123
+
+## BIBLIOTECARIO
+correo: bibliotecario@gmail.com
+documento: 234
+
+## DIRECTOR
+correo: director@gmail.com
+documento: 345
+
+## INFO NECESARIA
+El usuario puede ver libros, filtrarlos y hacer prestamos. El bibliotecario lo anterior mas cambiar el estado de los libros. El director puede hacer lo mismo de los roles anteriores más modificar el inventario de la biblioteca (agregar, editar y eliminar libros). Ya que esta basado en un sistema de colegio se uso con usuarios ya creados (no permite cerar cuenta) y con el documento de los usuarios. 
+
+# 📚 Proyecto de Inventario de Libros
+Este proyecto es una aplicación web desarrollada con **Next.js** y **Supabase** que permite gestionar un inventario de libros y su proceso de reserva. Permite agregar, editar, eliminar y buscar libros, así como aplicar filtros por diferentes campos.
+
+## 🚀 Propósito del Proyecto
+El objetivo principal de este proyecto es brindar una herramienta que facilite el control y gestión de libros en una biblioteca. Fue desarrollado como parte del curso de Analisis y diseño de sistemas II de la UdeA.
+
+## ⚙️ Tecnologías Utilizadas
+- **Next.js** (React framework)
+- **TypeScript**
+- **Tailwind CSS**
+- **Supabase** (como base de datos y backend)
+- **ShadCN/UI** (componentes de interfaz)
+- **Vercel** (para despliegue)
+
+## 🖥️ Instalación y Ejecución Local
+git clone https://...
+cd sistemabiblioteca
+npm install 
+yarn dev
+
+## Funcionalidades
+Listado paginado de libros
+Filtrado por título, autor y categoria
+Agregar nuevos libros
+Editar libros existentes
+Eliminar libros
+Panel de navegación y diseño responsive
+
+
+
+
+
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
 ## Getting Started
