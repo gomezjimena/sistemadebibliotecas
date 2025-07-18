@@ -20,6 +20,7 @@ const EditarLibroPage = () => {
   const router = useRouter();
   const { id } = router.query;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [libro, setLibro] = useState<any>(null);
 
   useEffect(() => {
@@ -38,13 +39,15 @@ const EditarLibroPage = () => {
       fetchLibro();
   }, [id]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleEditar = async (datosEditados: any) => {
     try {
       await editarLibro(id as string, datosEditados);
       alert('Libro editado correctamente');
       router.push('/inventario');
     } catch (error) {
-      alert('Error al editar libro');
+
+      console.error('Error al editar libro', error);
     }
   };
 

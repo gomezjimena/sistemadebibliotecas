@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card} from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import { getUsers } from '@/utils/api';
 import { useRouter } from 'next/router';
 
@@ -12,6 +12,12 @@ const roles = [
   { value: 'BIBLIOTECARIO', label: 'Bibliotecario' },
   { value: 'USUARIO', label: 'Usuario de la biblioteca' },
 ];
+
+interface User {
+  email: string;
+  documento: string;
+  rol: string;
+}
 
 export default function LoginFormWrapper() {
 
@@ -26,7 +32,7 @@ export default function LoginFormWrapper() {
       const users = await getUsers();
 
       const user = users.find(
-        (u: any) =>
+        (u: User) =>
           u.email === email &&
           u.documento === documento &&
           u.rol.toLowerCase() === rol.toLowerCase()

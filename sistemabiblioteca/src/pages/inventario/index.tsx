@@ -36,7 +36,7 @@ const InventarioPage = () => {
       await deleteLibro(id);
       setLibros(prevLibros => prevLibros.filter(libro => libro.id !== id));
     } catch (error) {
-      alert('Error al eliminar el libro');
+      console.error('Error al eliminar el libro', error);
     }
   };
 

@@ -20,6 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { titulo, autor, categoria, paginas, ubicacion, signatura, imagesrc, estado } = req.body;
 
   try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const updateData: any = {};
 
     if (estado !== undefined) {

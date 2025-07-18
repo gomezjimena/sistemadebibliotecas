@@ -31,7 +31,7 @@ interface Props {
 }
 
 const LibroFormCard = ({ modo, initialData, onSubmit }: Props) => {
-  const [id, setId] = useState(initialData?.id || '');
+  const [id] = useState(initialData?.id || '');
   const [titulo, setTitulo] = useState(initialData?.titulo || '');
   const [autor, setAutor] = useState(initialData?.autor || '');
   const [categoria, setCategoria] = useState(initialData?.categoria || '');
@@ -41,7 +41,8 @@ const LibroFormCard = ({ modo, initialData, onSubmit }: Props) => {
   const [imagesrc, setImagen] = useState(initialData?.imagesrc || '');
 
   const handleSubmit = () => {
-  const data: any = {
+  const data: LibroData = {
+    id,
     titulo,
     autor,
     categoria,

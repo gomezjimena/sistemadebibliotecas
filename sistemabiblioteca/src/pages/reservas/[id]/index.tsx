@@ -75,7 +75,7 @@ const ReservaPage = () => {
       alert('Reserva creada con éxito');
       router.push('/libros');
     } catch (error) {
-      alert('Error al crear la reserva');
+      console.error('Error al crear la reserva', error);
     }
   };
 

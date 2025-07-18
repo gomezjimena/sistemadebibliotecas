@@ -19,6 +19,7 @@ const Index = () => {
   const router = useRouter();
 
   const handleFiltrar = () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const query: any = {};
 
     if (titulo) query.titulo = titulo;

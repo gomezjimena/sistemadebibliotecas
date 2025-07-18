@@ -45,7 +45,7 @@ const EstadoLibroPage = () => {
         alert('Estado actualizado correctamente');
         router.push('/libros'); 
     } catch (error) {
-        alert('Error al actualizar el estado');
+        console.error('Error al actualizar el estado', error);
     }
     };
 

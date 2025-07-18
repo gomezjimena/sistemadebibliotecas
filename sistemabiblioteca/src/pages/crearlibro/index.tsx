@@ -8,13 +8,14 @@ import { crearLibro } from '@/utils/api';
 const CrearLibroPage = () => {
   const router = useRouter();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleCrearLibro = async (data: any) => {
     try {
       await crearLibro(data);
       alert('Libro creado exitosamente');
       router.push('/inventario'); 
     } catch (error) {
-      alert('Error al crear libro');
+      console.error('Error al crear libro:', error);
     }
   };
 
