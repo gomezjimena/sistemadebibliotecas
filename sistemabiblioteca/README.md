@@ -1,8 +1,8 @@
 ## INTEGRANTES:
-Jimena Muñoz Gómez
-Leonardo Saenz 
-Ricardo Velez
-Claudia Barreto
+Jimena Muñoz Gómez/
+Leonardo Saenz Mariño /
+Juan Ricardo Velez/
+Claudia Barreto Martinez/
 
 ## USUARIOS PARA EL PROYECTO
 
@@ -36,18 +36,18 @@ El objetivo principal de este proyecto es brindar una herramienta que facilite e
 - **Vercel** (para despliegue)
 
 ## 🖥️ Instalación y Ejecución Local
-git clone https://...
-cd sistemabiblioteca
-npm install 
-yarn dev
+git clone https://.../
+cd sistemabiblioteca/
+npm install /
+yarn dev/
 
 ## Funcionalidades
-Listado paginado de libros
-Filtrado por título, autor y categoria
-Agregar nuevos libros
-Editar libros existentes
-Eliminar libros
-Panel de navegación y diseño responsive
+Listado paginado de libros/
+Filtrado por título, autor y categoria/
+Agregar nuevos libros/
+Editar libros existentes/
+Eliminar libros/
+Panel de navegación y diseño responsive/
 
 
 
